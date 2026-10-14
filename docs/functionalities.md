@@ -1,0 +1,22 @@
+# Two Major Functionalities
+
+## 1. Product Listing and Validation
+
+- This functionality allows registered producers to list new products on the Bristol Regional Food Network marketplace.
+- Producers will enter required product information including product name, description, category, price, available quantity, availability period, farm origin and any relevant information such as harvest date, allergen details, organic certification and best-before date.
+- The system will validate the submitted information to ensure all required details are correct.
+- If any information is missing or invalid, the producer will be asked to correct it. 
+- If a product is labelled as organic, the system will verify its certification using an external or simulated verification service.
+- If certification verification fails or the service is unavailable, the system will follow an appropriate error-handling process rather than publishing the product without successful verification.
+- Once all checks are completed successfully, the product will be published on the marketplace for customers to view.
+
+
+## 2. Inventory and Seasonal Availability Management
+
+- This functionality allows producers to manage their product stock levels and seasonal availability.
+- Producers will be able to update product quantities and availability periods. 
+- If a producer enters an invalid quantity or availability period, the system will reject the update and ask the producer to correct the information.
+- The system will automatically check whether products are in stock and within their seasonal availability dates.
+- If a product's stock reaches zero, it will automatically become unavailable for new orders. 
+- When stock is replenished and it is still within its seasonal availability period, the product can become available again.
+- This ensures customers receive accurate information about product availability and helps producers manage their inventory efficiently.
