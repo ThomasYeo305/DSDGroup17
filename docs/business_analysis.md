@@ -1,222 +1,277 @@
- # Business Process and Organisational Responsibilities Analysis
+# Business Process and Organisational Responsibilities Analysis
 
-## Analysis of the business
+## 1. Analysis of the Business
 
-It is a community initiative connecting local food producers with consumers within twenty miles of Bristol city centre. Forty small-to-medium producers currently struggle to reach customers beyond farmers' markets and farm gate sales. The digital marketplace is intended to remove that barrier. The network serves three customer segments:
+The Bristol Regional Food Network (BRFN) is a community initiative connecting local food producers with consumers within twenty miles of Bristol city centre. Approximately forty small-to-medium producers currently struggle to reach customers beyond farmers' markets and farm-gate sales. The digital marketplace is intended to help these producers reach a wider customer base.
 
-        - Young professionals and families
-        - Community groups 
-        - Independent restaurants and cafes
+The network serves three main customer segments:
 
+- Young professionals and families
+- Community groups
+- Independent restaurants and cafés
 
-## Analysis of Major Business Processes
+The marketplace supports product listing, product discovery, order management, payment processing, producer settlements, order fulfilment coordination, and quality and traceability management.
+
+## 2. Analysis of Major Business Processes
 
 ### P1. Product Listing and Inventory Management
 
-Producers submit product details, including product name, description, category, price, quantity, farm origin and seasonal availability. The marketplace validates the information before publishing the product. Organic certification claims may require external verification. Producers can update inventory and availability and products with zero stock must become unavailable for new orders.
+Producers submit product information to the marketplace, which validates and maintains product listings. The marketplace also manages inventory and seasonal availability so customers can view current product information and availability.
 
-##### Trigger
-• P1a: a registered producer decides to list a new product.
-• P1b: a producer changes a quantity or availability period; stock reaches zero or is replenished; a season opens or closes; an order reduces stock.
+#### Triggers
 
-##### Main steps: P1a Listing and Validation
-1. The producer submits name, description, category, price, quantity, availability period and farm origin, plus harvest date, allergens, organic certification and best-before date where relevant.
-2. The platform checks that mandatory fields are present and valid. The producer corrects anything missing or invalid.
-3. If the product is labelled organic, the platform sends the certification details to an external or simulated verification service.
-4. When every check succeeds, the product is published to customers.
+- A producer submits a request to list a new product.
+- A producer requests an inventory or seasonal availability update.
 
-##### Main steps: P1b Inventory and Seasonal Availability
-1. The producer updates quantity or availability dates. The platform rejects invalid values and asks for a correction.
-2. The platform checks whether stock is above zero and today falls inside the availability period.
-3. Zero stock makes the product unavailable for new orders. Restocking inside the season makes it available again.
+#### Main Steps: Product Listing and Validation
 
-##### Outcome
-P1a produces a published product record carrying its traceability data. P1b produces a correct availability status for every product, so customers see accurate information.
+1. The producer submits a product listing request containing the relevant product information.
+2. The marketplace receives the request and validates the submitted information.
+3. Where a product is labelled organic, the marketplace requests verification from the organic certification verification service.
+4. The verification service returns a result to the marketplace.
+5. The listing request is processed, and the product catalogue is updated accordingly.
 
-##### Exceptions
-Missing or invalid data; failed certification; verification service unavailable (the product is not published without successful verification); invalid quantity or dates; a stock change that conflicts with open orders.
+#### Main Steps: Inventory and Seasonal Availability
+
+1. The producer submits an inventory update request.
+2. The marketplace receives the request and manages inventory and seasonal availability.
+3. The product catalogue and inventory records are updated.
+4. The inventory update process is completed.
+
+#### Outcome
+
+Product listing requests and inventory update requests are processed, allowing the marketplace to maintain product information and availability records.
+
+#### Exceptions and Dependencies
+
+- Missing or invalid product information.
+- Unsuccessful organic certification verification.
+- Organic certification verification service unavailability.
+- Invalid inventory or seasonal availability information.
+
+The diagram represents the organic certification verification service as an external participant. Detailed validation rules and exception handling can be specified in the functional requirements.
 
 ### P2. Product Browsing and Discovery
 
-Customers browse products by categories such as vegetables, dairy, bakery goods, preserves and seasonal specialities. Search functionality helps customers locate specific products. Product displays should communicate farm origin, harvest dates and seasonal availability where relevant.
+Customers use the marketplace to browse and search for available products. The marketplace retrieves product information from the product catalogue and inventory records and displays relevant information to customers.
 
-##### Trigger
-A customer visits the marketplace or enters a search.
+#### Trigger
 
-##### Main steps
-1. The customer browses categories (vegetables, dairy, bakery goods, preserves, seasonal specialities) or searches by keyword.
-2. The platform returns matching products with availability status, farm origin, harvest date and seasonal indicator.
-3. The customer opens a product to see price, allergens, organic status and best-before date.
-4. The customer adds chosen items to a basket.
+A customer requests product browsing or search.
 
-##### Outcome
-A basket of available products from one or more producers.
+#### Main Steps
 
-##### Exceptions
-No search results; a product becomes unavailable while it is in the basket (driven by P1b).
+1. The marketplace receives a product browsing request.
+2. The platform provides product browsing and search functionality.
+3. Product information is retrieved from the product catalogue and inventory records.
+4. Relevant product information is displayed to the customer.
+
+#### Outcome
+
+Customers can discover products and view the information made available through the marketplace.
+
+#### Exceptions
+
+- No matching products are available.
+- Product information is missing or outdated.
+- A product becomes unavailable before an order is placed.
 
 ### P3. Order Processing
 
-Customers place orders for products from one or more producers. The marketplace must support both single-vendor and multi-vendor orders while retaining the responsibilities and fulfilment arrangements associated with each supplier. Producers require sufficient preparation time, with a minimum of 48 hours' lead time for incoming orders.
+The marketplace manages customer orders and coordinates the transition from checkout to payment and fulfilment. The process interacts with the product catalogue, inventory records, and order and payment records.
 
-##### Trigger
-A customer proceeds to checkout.
+#### Trigger
 
-##### Main steps
-1. The platform re-checks stock and availability for every item.
-2. It splits the basket by producer into sub-orders and keeps each supplier's responsibilities attached.
-3. It shows the customer each supplier's delivery or collection arrangements.
-4. It requests payment (P4, sandbox only).
-5. On successful payment it confirms the order and notifies each producer, which starts P5.
+A customer submits a checkout request.
 
-##### Outcome
-One confirmed order made of one or more producer sub-orders. Stock is reduced, which can trigger P1b.
+#### Main Steps
 
-##### Exceptions
-Payment failure; an item sells out during checkout; only part of a multi-vendor basket is available.
+1. The marketplace receives the customer checkout request.
+2. The marketplace manages the customer order using the relevant product, inventory, order and payment information.
+3. The order proceeds to customer payment processing.
+4. The marketplace evaluates the payment result.
+5. If payment is successful, the marketplace proceeds to order fulfilment coordination.
+6. If payment is unsuccessful, the marketplace handles the unsuccessful payment and the order is not confirmed.
 
-### P4. Payment and Settlement
+#### Outcome
 
-The marketplace processes payments for customer orders and calculates the network's five per cent commission. Payments must be allocated to the appropriate producers according to agreed arrangements, with weekly settlements and auditable financial records.
+The marketplace coordinates the order process according to the payment result. Successful payment allows the order to proceed towards fulfilment, while unsuccessful payment is handled separately.
 
-##### Trigger
-A payment request from checkout; the weekly settlement cycle.
+#### Exceptions
 
-##### Main steps
-1. The platform sends the payment to the payment service.
-2. On confirmation it records the transaction.
-3. It calculates the five percent commission and each producer's share per sub-order.
-4. At the end of each week it totals each producer's completed orders (assumption: only fulfilled orders are settled).
-5. It pays producers and issues a settlement statement with an audit trail suitable for tax and accounting.
+- Payment is declined or unsuccessful.
+- Product availability changes before checkout is completed.
+- The order cannot proceed because relevant product or inventory information is unavailable.
 
-##### Outcome
-Producers are paid weekly with transparent statements, BRFN receives its commission, and financial records are auditable.
+The current BPMN diagram represents order management as a high-level activity. Detailed behaviours such as splitting a multi-producer basket into producer-specific sub-orders, checking the minimum 48-hour preparation period, and reserving or reducing stock should be specified in the functional requirements if they are included in the agreed system scope.
 
-##### Exceptions
-Declined payment; refund or disputed order (open question); failed payout.
+### P4. Payment and Producer Settlement
 
-### P5.Order Fulfilment
+The marketplace coordinates customer payment processing and manages producer settlements. It maintains order and payment records to support financial operations.
 
-Producers prepare orders and fulfilment arrangements communicate how customers receive their purchases through delivery or collection. Multi-vendor orders require clear communication of individual suppliers' responsibilities and commitments.
+The business model specifies a five per cent commission for BRFN, alongside producer payments and weekly settlement arrangements.
 
-##### Trigger
-A confirmed order notifies a producer.
+#### Triggers
 
-##### Main steps
-1. The platform notifies the producer of the sub-order with at least 48 hours' lead time.
-2. The producer confirms and prepares the products.
-3. Delivery or collection takes place as arranged.
-4. Completion is recorded, and the customer can see the status of each supplier's part.
+- A customer checkout request initiates payment processing.
+- A weekly settlement timer triggers the producer settlement process.
 
-##### Outcome
-The customer receives the goods and a fulfilment status is recorded per producer. This releases the order for settlement.
+#### Main Steps: Customer Payment
 
-##### Exceptions
-Producer cannot fulfil; late delivery; missed collection; partial fulfilment of a multi-vendor order.
+1. The marketplace processes the customer payment request.
+2. The payment request is sent to the external payment service.
+3. The external service returns the payment processing result.
+4. The marketplace evaluates whether payment was successful.
+5. If payment succeeds, the order proceeds towards fulfilment.
+6. If payment fails, the marketplace handles the unsuccessful payment and the order is not confirmed.
+
+#### Main Steps: Producer Settlements
+
+1. The weekly settlement timer triggers the settlement process.
+2. The marketplace manages producer settlements using the available order and payment records.
+3. The settlement process is completed.
+
+#### Outcome
+
+Customer payment outcomes are handled by the marketplace, and producer settlements are processed through a separate weekly settlement workflow.
+
+#### Exceptions and Dependencies
+
+- Declined or unsuccessful customer payment.
+- Failed producer payout.
+- Refunds or disputed orders.
+- Incomplete or inaccurate financial records.
+
+The BPMN diagram represents the external payment service and the weekly settlement trigger. Detailed commission calculations, producer payment allocations, settlement statements and audit records should be specified in the functional requirements.
+
+The assumption that only fulfilled orders qualify for settlement requires confirmation from BRFN.
+
+### P5. Order Fulfilment
+
+The marketplace coordinates order fulfilment after successful customer payment. The process communicates order confirmation and fulfilment details to the customer and coordinates the relevant fulfilment arrangements.
+
+#### Trigger
+
+The payment process indicates that the customer payment was successful.
+
+#### Main Steps
+
+1. The marketplace proceeds from the successful-payment path to order fulfilment coordination.
+2. The marketplace coordinates fulfilment using the relevant order details.
+3. Order confirmation and fulfilment details are communicated to the customer.
+4. The order fulfilment process is completed.
+
+#### Outcome
+
+The marketplace coordinates the fulfilment process and communicates relevant information to the customer.
+
+#### Exceptions
+
+- A producer cannot fulfil an order.
+- Delivery or collection is delayed.
+- A collection is missed.
+- Only part of a multi-producer order is fulfilled.
+
+The current BPMN diagram models fulfilment coordination at a high level. The detailed activities performed by producers, including product preparation, delivery or collection, and individual fulfilment status updates, are not modelled as internal producer activities because the Producer is represented as a black-box pool.
+
+The precise responsibility for arranging delivery or collection must be agreed with BRFN.
 
 ### P6. Quality and Traceability
 
-The marketplace records relevant product information, including farm origin, organic certification status, allergen warnings and best-before dates. Records linking customers, products and producers support communication when quality issues or food safety concerns arise.
+The marketplace manages food-quality incidents and traceability using product information, order records and relevant information about producers and customers.
 
-##### Trigger
-Continuous, at listing and ordering (records are captured); an incident starts when a quality or food safety concern is reported.
+Product listing and inventory management provide product information, while order and payment records support the identification of relevant transactions.
 
-##### Main steps
-1. At listing, the platform stores origin, organic status, allergen warnings and best-before date.
-2. At ordering, it links customer, product and producer.
-3. When a concern is raised, the administrator identifies the affected product and producer.
-4. The platform finds every customer who bought it from the order records.
-5. Customers and the producer are notified, and the outcome is recorded. Regulators are informed where required (assumption).
+#### Trigger
 
-##### Outcome:
-A traceable record for every product sold and rapid, targeted communication during an incident.
+A food-quality incident is reported by a relevant participant.
 
-##### Exceptions
-Incomplete traceability data
+#### Main Steps
 
-### P7. Sustainability and Community Engagement
+1. The marketplace receives a food-quality incident report.
+2. The incident is handled through the food-quality incident and traceability process.
+3. Relevant product, inventory and order information is used to support the investigation.
+4. The marketplace communicates relevant food-safety information where appropriate.
+5. Incident handling is completed.
 
-The platform supports postcode-based food miles calculations, surplus produce notifications and last-minute discounts to reduce food waste. Producers can also share seasonal recipes, storage guidance and farm stories.
+#### Outcome
 
-##### Trigger
-Order completion or a reporting period (food miles); a producer flags surplus stock (discounts); a producer submits content (recipes and stories).
+Food-quality incidents can be managed using the information available within the marketplace, supporting investigation and traceability.
 
-##### Main steps
-1. Food miles: the platform compares producer and customer postcodes through a distance service, records the distance per order and aggregates it for reporting.
-2. Surplus: the producer flags surplus, sets a last-minute discount, interested customers are notified, and the sale goes through normal checkout.
-3. Content: the producer submits a seasonal recipe, storage guidance or farm story, the administrator reviews it (assumption) and it is published.
+#### Exceptions
 
-##### Outcome
-Food miles figures for the network, reduced food waste and educational content that strengthens community links.
+- Incomplete product or traceability information.
+- Insufficient order records to identify affected customers.
+- Difficulty obtaining the information required to investigate an incident.
 
-##### Exceptions
-Invalid postcode; distance service unavailable; discount conflicts with the 48-hour lead time
+The current diagram represents food-quality incident management and traceability as a dedicated process. The exact investigation steps, customer notification procedures and any regulatory reporting requirements should be specified in the functional requirements and confirmed with BRFN.
 
-## Relationships Between Business Processes
+## 3. Relationships Between Business Processes
 
-The seven major business processes are interconnected through shared product information, order information, inventory updates and financial records. These relationships ensure that the marketplace can coordinate customer purchases, producer responsibilities and the supporting business activities.
+The business processes are connected through shared product information, inventory records, order and payment records, and communications between the marketplace and its external participants.
 
-#### Product Listing, Browsing and Inventory
+### Product Listing, Inventory and Browsing
 
-Product listing and inventory management (P1) provides the product information and availability status used by product browsing and discovery (P2). Customers can only select products that are available for purchase. When stock reaches zero or a product's availability period ends, the listing must be updated so that the product cannot be ordered.
+Product listing and inventory management (P1) maintains the information used by product browsing and discovery (P2). Product information and availability records support the marketplace's ability to display relevant information to customers.
 
-#### Browsing, Order Processing and Inventory
+### Browsing and Order Processing
 
-Product browsing and discovery (P2) enables customers to select products and create a basket. During order processing (P3), the marketplace checks stock and availability again because inventory may have changed since the customer first selected the items. A confirmed order reduces available stock, linking P3 back to P1. If an item is no longer available, the marketplace must communicate this to the customer before the order is confirmed.
+Product browsing and discovery (P2) enables customers to find products through the marketplace. Customer checkout requests initiate order processing (P3), which uses the relevant product, inventory and order information.
 
-#### Order Processing, Payment and Fulfilment
+### Order Processing and Payment
 
-Order processing (P3) initiates the payment process (P4). Payment results determine whether the order can proceed according to the agreed business rules. For orders involving multiple producers, the marketplace separates the order into producer-specific sub-orders and notifies the relevant producers after confirmation. These notifications initiate order fulfilment (P5), where each producer prepares and fulfils their part of the order.
+Order processing (P3) connects to payment processing (P4). The marketplace evaluates the payment result to determine whether the order can proceed. Successful payment allows the order to progress towards fulfilment, while unsuccessful payment is handled separately and the order is not confirmed.
 
-#### Fulfilment and Settlement
+### Payment and Fulfilment
 
-Order fulfilment (P5) records whether each producer's part of an order has been completed. This information can support the weekly settlement process in P4. However, the rule that only fulfilled orders are eligible for settlement must be confirmed with BRFN before it is treated as a final business requirement.
+Successful payment allows the marketplace to proceed to order fulfilment coordination (P5). The marketplace coordinates fulfilment and communicates order confirmation and fulfilment details to the customer.
 
-#### Product Information and Traceability
+### Payment and Producer Settlement
 
-Product listing and inventory management (P1) captures product information such as farm origin, organic status, allergens and best-before dates where relevant. Quality and traceability (P6) uses this information alongside order records to identify products, producers and customers affected by a reported quality concern. Accurate and complete records are therefore important for effective incident investigation.
+Producer settlements (P4) are managed through a separate workflow triggered by the weekly settlement timer. The process uses order and payment records. The eligibility rules for settlement, including whether an order must be fulfilled before payment to the producer, require confirmation from BRFN.
 
-#### Sustainability and Community Engagement
+### Product Information and Traceability
 
-Sustainability and community engagement (P7) complements the other processes. Food-miles reporting uses producer and customer postcode information associated with orders. Surplus produce offers can affect product listings, prices and customer purchasing decisions, while still following the agreed availability and ordering rules. Recipes, storage guidance and farm stories provide additional information to support community engagement.
+Product listing and inventory management (P1) maintains product information, while quality and traceability (P6) uses relevant product and order records to support food-quality investigations. The availability and accuracy of these records are important for identifying products and participants associated with an incident.
 
-Overall, these relationships demonstrate that changes in one process may affect other parts of the marketplace. The system must maintain consistent product availability, order status and relevant records across the connected processes.
+Overall, these relationships show how the marketplace coordinates its core activities using shared information and communications. The BPMN diagram focuses on the major processes and their relationships rather than modelling every detailed system interaction.
 
-### Organisational Responsibilities
+## 4. Organisational Responsibilities
 
-Operating the BRFN digital marketplace requires coordination between producers, customers, BRFN administrators and the supporting software platform. Each participant has different responsibilities throughout the marketplace's business processes.
+Operating the BRFN digital marketplace requires coordination between producers, customers, BRFN administrators, financial operations and the supporting software platform.
 
-- **Producers:** Submit and maintain product information, update stock and availability, respond to incoming orders, prepare products and fulfil orders according to the agreed delivery or collection arrangements.
-- **Customers:** Browse products, select items, provide the information required for ordering and payment, and receive their orders through the agreed fulfilment arrangements.
-- **BRFN administrators:** Oversee marketplace operations, support the resolution of product or quality concerns, and manage content or operational decisions that require administrative approval.
-- **Financial operations:** Oversee commission calculations, producer settlement arrangements and the maintenance of appropriate financial records. The precise allocation of these responsibilities within BRFN requires confirmation.
-- **Marketplace platform:** Automates activities such as validating product information, displaying availability, checking stock at checkout, splitting orders by producer, recording transactions and maintaining traceability records.
-- **External service providers:** Support specific activities such as certification verification, payment processing and postcode-based distance calculations.
+- **Producers:** Submit product listing requests, maintain product information and inventory, and provide relevant information when required for order fulfilment or quality investigations. Their internal activities are outside the detailed scope of the current BPMN diagram.
+- **Customers:** Request product browsing, submit checkout requests and receive relevant order confirmation, fulfilment information and food-quality communications.
+- **BRFN administrators:** Oversee marketplace operations and support the management of operational or food-quality incidents. Specific administrative approval and escalation responsibilities require confirmation.
+- **Financial operations:** Support customer payment processing, producer settlements and the maintenance of appropriate financial records.
+- **Marketplace platform:** Performs or coordinates the activities represented in the BPMN diagram, including product listing validation, inventory management, product browsing, customer order management, payment handling, fulfilment coordination, producer settlements and food-quality incident management.
+- **External service providers:** Support specific processes, including organic certification verification and customer payment processing.
 
-The responsibilities of the business participants should be distinguished from the automated activities performed by the software. The platform supports the business processes, but accountability for business decisions and exceptions should be assigned to an appropriate business role.
+The Producer and Customer are represented as black-box pools in the strategic BPMN. This means their internal workflows are not modelled in detail; instead, their interactions with the marketplace are represented through message flows.
 
+The responsibilities of business participants should be distinguished from automated activities performed by the software. The platform supports the business processes, while accountability for business decisions and exceptions belongs to the appropriate business role.
 
-## External Services and Dependencies
+## 5. External Services and Dependencies
 
-The marketplace relies on external or supporting services for certain activities.
+The current BPMN diagram includes two external services or participants that support marketplace operations.
 
-- Organic certification verification: supports checking certification claims submitted during product listing or updates. The system must handle unsuccessful verification and service unavailability appropriately.
-- Payment services: support transaction processing and the financial workflow. Development and testing must use sandbox or simulated payment environments rather than live payment systems.
-- Postcode-based distance calculations: support environmental reporting by estimating food miles.
+- **Organic Certification Verification Service:** Receives verification requests from the product listing process and returns certification verification results. This supports the validation of organic product claims.
+- **External Payment Services:** Receives payment processing requests and returns payment processing results. The payment workflow should be developed and tested using sandbox or simulated payment environments rather than live payment systems.
 
-These dependencies should be considered when modelling interactions between the marketplace and external services.
+The diagram also includes the Producer and Customer as external participants. Their interactions with the marketplace are represented through labelled message flows, while their internal workflows remain outside the current model.
 
+## 6. Implications for the Strategic BPMN
 
-## Implications for the Strategic BPMN
+The strategic BPMN represents the major internal business processes required to operate the BRFN digital marketplace and the interactions between the marketplace and its external participants.
 
-The strategic BPMN should represent the major business processes required to operate the Bristol Regional Food Network (BRFN) digital marketplace, including the main participants, activities, decisions and handovers between processes.
+The model begins with product listing and inventory management (P1), which maintains product information and availability. Product browsing and discovery (P2) enables customers to request and view product information. Customer checkout requests initiate order processing (P3), which connects to customer payment processing (P4).
 
-The process analysis identifies product listing and inventory management (P1) as the starting point for making products available to customers. Product browsing and discovery (P2) enables customers to identify products and create a basket. Order processing (P3) then checks product availability, separates orders by producer where necessary and initiates payment (P4). Once an order is confirmed, the relevant producer is notified so that order fulfilment (P5) can begin.
+The payment decision determines whether the order can proceed. Successful payment allows the marketplace to coordinate order fulfilment (P5), while unsuccessful payment is handled through a separate path and the order is not confirmed. Producer settlements are managed through a weekly settlement workflow using order and payment records.
 
-The model should also show how information is shared between processes. Inventory changes in P1 can affect product availability during P2 and checkout in P3. Payment confirmation is required before an order is confirmed, subject to the agreed payment rules. Fulfilment status may then determine when a producer's order becomes eligible for settlement, subject to confirmation of BRFN's settlement policy.
+Quality and traceability (P6) provides a separate process for handling reported food-quality incidents using relevant product, inventory and order information.
 
-Quality and traceability (P6) support the marketplace by maintaining links between products, producers and customers. These records can be used to investigate quality concerns and identify affected customers. Sustainability and community engagement (P7) complement the core marketplace processes through food-miles calculations, surplus produce offers and educational content.
+The model identifies the Producer and Customer as black-box pools, reflecting the decision to focus on the marketplace's internal processes rather than the participants' internal workflows. It also includes the Organic Certification Verification Service and External Payment Services to show the marketplace's dependencies on external services.
 
-The strategic BPMN should identify the main business participants, including customers, producers and BRFN administrators, and show where the marketplace interacts with external services. These include organic certification verification, payment processing and postcode-based distance calculations. Exceptions such as unavailable stock, unsuccessful payments and failed external-service requests should be considered where they affect the overall business process.
+The strategic BPMN provides a high-level view of the processes and their interactions. Detailed validation rules, stock management behaviour, multi-producer order handling, settlement calculations and incident investigation procedures can be elaborated in the functional requirements and implementation models.
 
-The model should provide a high-level view of how BRFN operates rather than showing every detailed system interaction. Detailed validation rules, data fields and exception-handling steps can be elaborated in the relevant functional requirements and implementation models.
+Sustainability and community engagement activities, including food-miles reporting, surplus produce offers and community content, are not represented as a dedicated process in the current BPMN diagram. If these capabilities remain within the agreed system scope, they should be documented separately as supporting requirements or covered in a separate process model.
