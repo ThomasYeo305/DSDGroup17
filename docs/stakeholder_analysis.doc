@@ -1,71 +1,45 @@
-# Stakeholder Analysis
-**Project:** Bristol Regional Food Network – Digital Marketplace  
-**Use Case:** 1 – Producer Product Listing and Inventory Management
+Stakeholder Analysis
+Project: Bristol Regional Food Network – Digital Marketplace
+Use Case: 1 – Producer Product Listing and Inventory Management
 
----
+1. External Payment Service
+Goal: Provide secure and reliable payment processing for transactions made through the marketplace.
 
-## 1. Restaurants / Cafés
+Problem / Concern: Failed transactions, payment security risks and delays in payment processing.
 
-Goal: Easily find and purchase fresh, locally sourced ingredients from reliable producers.
+Responsibilities: Process customer payments, verify transaction status and return payment confirmation or failure notifications to the marketplace.
 
-Problem / Concern: Difficulty finding consistent local suppliers and managing relationships with multiple producers.
+2. Organic Verification Company
+Goal: Ensure that products advertised as organic have valid certification.
 
-Responsibilities: Search for locally sourced products, check availability and place orders through the marketplace.
+Problem / Concern: Invalid or expired organic certifications, misleading organic claims and verification failures.
 
----
+Responsibilities: Verify organic certification details submitted by producers and return verification results to the marketplace.
 
-## 2. Organic Certification Verification Service
+3. Customer
+Goal: Easily browse and purchase fresh, locally sourced products with accurate information and availability.
 
-Goal: Verify organic certification claims to support accurate and trustworthy product listings.
+Problem / Concern: Incorrect stock information, misleading product descriptions, missing allergen information and payment difficulties.
 
-Problem / Concern: Invalid certification details, false organic claims and verification service failures.
+Responsibilities: Browse available products, review product information, check availability, place orders and complete payments through the marketplace.
 
-Responsibilities: Verify organic certification information submitted by producers and return verification results.
+4. Producers
+Goal: Easily list products, manage inventory and reach more customers through the marketplace.
 
----
+Problem / Concern: Time-consuming product management, limited technical knowledge, validation errors and frequent seasonal stock changes.
 
-## 3. Customers
+Responsibilities: Create and update product listings, provide accurate product descriptions, pricing and allergen information, submit organic certification details where applicable, correct validation errors and manage stock quantities and seasonal availability.
 
-Goal: Browse and purchase locally sourced food with accurate product information.
+5. Marketplace Management
+Goal: Maintain a reliable, efficient and trustworthy digital marketplace connecting local producers with customers.
 
-Problem / Concern: Incorrect stock availability, misleading product descriptions and missing allergen information.
+Problem / Concern: Inaccurate product listings, unresolved validation errors, inefficient marketplace operations and failure to meet business objectives.
 
-Responsibilities: Browse products, review product information, check availability and purchase available products.
+Responsibilities: Oversee marketplace operations, monitor product listing accuracy, manage listing-related issues, support producers and customers, and ensure the platform meets commercial and sustainability objectives.
 
----
-
-## 4. Producers
-
-Goal: Easily list products, manage inventory and reach more customers.
-
-Problem / Concern: Time-consuming product management, limited technical knowledge and frequent seasonal stock changes.
-
-Responsibilities: Add new product listings, provide accurate product details, correct validation errors, update stock quantities and manage seasonal availability.
-
----
-
-## 5. Marketplace Owner
-
-Goal: Operate a reliable and efficient marketplace that connects local producers with customers.
-
-Problem / Concern: Inaccurate product listings, inefficient operations and failure to meet business objectives.
-
-**Responsibilities:** Oversee marketplace objectives, support operational efficiency and ensure the platform supports commercial and sustainability goals.
-
----
-
-## 6. Marketplace Administrator
-
-Goal: Maintain accurate product information and support marketplace operations.
-
-Problem / Concern: Incorrect product information, validation errors and unresolved listing issues.
-
-Responsibilities: Support marketplace operations, investigate listing issues and assist with resolving inaccurate product information where authorised.
-
----
-
-## Notes
-
-- Restaurants and cafés are a distinct customer segment within the case study.
-- Organic certification verification is performed through an external or simulated service.
-- The marketplace owner and administrator responsibilities are proposed interpretations of the case study and should be confirmed by the group.
+Notes
+- External Payment Service: An external system responsible for processing payments. Although relevant to the overall marketplace, it may have limited involvement in Use Case 1, which focuses on product listing and inventory management.
+- Organic Verification Company: An external service responsible for verifying organic certifications submitted by producers.
+- Customer: Includes individual consumers, restaurants and cafés purchasing products through the marketplace.
+- Producers: The primary stakeholders for Use Case 1, as they are directly responsible for creating product listings and managing inventory.
+- Marketplace Management: Combines the previous Marketplace Owner and Marketplace Administrator into one stakeholder group, covering both strategic oversight and operational management.
