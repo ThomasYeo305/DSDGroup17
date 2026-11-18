@@ -1,0 +1,94 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.10.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "1921008"
+  },
+  "schemaVersion": 19,
+  "id": "Form_15qybik",
+  "components": [
+    {
+      "label": "Product Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1gfnqmo",
+        "columns": null
+      },
+      "id": "Field_1kbtosx",
+      "key": "productName",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Product Description",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_06ryo52",
+        "columns": null
+      },
+      "id": "Field_0ymfyio",
+      "key": "productDescription",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Product Price",
+      "type": "number",
+      "layout": {
+        "row": "Row_1c8i0tx",
+        "columns": null
+      },
+      "id": "Field_0hr94p2",
+      "key": "productPrice",
+      "validate": {
+        "required": true,
+        "min": "0.01",
+        "max": "2"
+      }
+    },
+    {
+      "label": "Stock Quantity",
+      "type": "number",
+      "layout": {
+        "row": "Row_0qv7w0w",
+        "columns": null
+      },
+      "id": "Field_059p20i",
+      "key": "stockQuantity",
+      "validate": {
+        "required": true,
+        "min": "0"
+      }
+    },
+    {
+      "label": "Is this product organic-certified?",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_02jhf2i",
+        "columns": null
+      },
+      "id": "Field_09y9wt5",
+      "key": "organicClaimed"
+    },
+    {
+      "label": "Organic Certificate Number",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1kv7yk9",
+        "columns": null
+      },
+      "id": "Field_037jzm9",
+      "key": "organicCertificateNumber",
+      "conditional": {
+        "hide": "=organicClaimed = false"
+      },
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default"
+}

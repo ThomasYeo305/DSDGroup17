@@ -1,0 +1,27 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.10.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "1921008"
+  },
+  "schemaVersion": 19,
+  "id": "submit-corrected-certificate-details-1msnv10",
+  "components": [
+    {
+      "label": "Corrected Organic Certificate Number",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0m6skzm",
+        "columns": null
+      },
+      "id": "Field_1gevuar",
+      "key": "organicCertificateNumber",
+      "validate": {
+        "required": true
+      },
+      "description": "Please enter your updated organic certification details "
+    }
+  ],
+  "type": "default"
+}
