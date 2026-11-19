@@ -1,0 +1,424 @@
+{
+  "processId": "Proces",
+  "testCases": [
+    {
+      "name": "Producer – correction loop",
+      "description": "Producer submits wrong dates, gets a correction request, fixes them, resubmits and is confirmed.",
+      "instructions": [
+        {
+          "type": "CREATE_PROCESS_INSTANCE",
+          "processDefinitionSelector": {
+            "processDefinitionId": "Proces"
+          },
+          "variables": {
+            "inventoryUpdateId": "INV-0001"
+          },
+          "runtimeInstructions": [
+            {
+              "type": "TERMINATE_PROCESS_INSTANCE",
+              "afterElementId": "Event_12m1moa"
+            }
+          ]
+        },
+        {
+          "type": "COMPLETE_USER_TASK",
+          "userTaskSelector": {
+            "elementId": "Activity_0ymhgse"
+          },
+          "variables": {
+            "productName": "",
+            "stockQuantity": null,
+            "availabilityStartDate": null,
+            "availabilityEndDate": null
+          }
+        },
+        {
+          "type": "COMPLETE_USER_TASK",
+          "userTaskSelector": {
+            "elementId": "Activity_0pt73m4"
+          },
+          "variables": {
+            "productName": "",
+            "stockQuantity": 50,
+            "availabilityStartDate": "2026-11-01",
+            "availabilityEndDate": "2027-02-28"
+          }
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_0qbaaqk",
+            "jobType": "submits inventory details"
+          }
+        },
+        {
+          "type": "ASSERT_ELEMENT_INSTANCE",
+          "processInstanceSelector": {
+            "processDefinitionId": "Proces"
+          },
+          "elementSelector": {
+            "elementId": "inventoryUpdateId"
+          },
+          "state": "IS_ACTIVE"
+        },
+        {
+          "type": "PUBLISH_MESSAGE",
+          "name": "CorrectionRequest",
+          "correlationKey": "INV-0001"
+        },
+        {
+          "type": "COMPLETE_USER_TASK",
+          "userTaskSelector": {
+            "elementId": "Activity_11pcdbm"
+          },
+          "variables": {
+            "textfield_1wwazv": "50",
+            "textfield_ikarop": "",
+            "textfield_xf0uzy": "",
+            "textfield_p5u9u7": "1/11/2026",
+            "textfield_gurl9": "28/2/2027"
+          }
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_05f2te7",
+            "jobType": "resubmit-inventory-update"
+          }
+        },
+        {
+          "type": "ASSERT_ELEMENT_INSTANCE",
+          "processInstanceSelector": {
+            "processDefinitionId": "Proces"
+          },
+          "elementSelector": {
+            "elementId": "Event_0j00jns"
+          },
+          "state": "IS_ACTIVE"
+        },
+        {
+          "type": "PUBLISH_MESSAGE",
+          "name": "UpdateConfirmation",
+          "correlationKey": "INV-0001"
+        }
+      ],
+      "metadata": {
+        "processInstanceId": "2251799867798794",
+        "coveredFlowNodes": [
+          {
+            "flowNodeId": "Event_1geqrm1",
+            "elementType": "bpmn:StartEvent"
+          },
+          {
+            "flowNodeId": "Activity_0ymhgse",
+            "elementType": "bpmn:UserTask"
+          },
+          {
+            "flowNodeId": "Activity_0pt73m4",
+            "elementType": "bpmn:UserTask"
+          },
+          {
+            "flowNodeId": "Activity_0qbaaqk",
+            "elementType": "bpmn:SendTask"
+          },
+          {
+            "flowNodeId": "Gateway_1ylnwlm",
+            "elementType": "bpmn:EventBasedGateway"
+          },
+          {
+            "flowNodeId": "inventoryUpdateId",
+            "elementType": "bpmn:IntermediateCatchEvent"
+          },
+          {
+            "flowNodeId": "Activity_11pcdbm",
+            "elementType": "bpmn:UserTask"
+          },
+          {
+            "flowNodeId": "Activity_05f2te7",
+            "elementType": "bpmn:SendTask"
+          },
+          {
+            "flowNodeId": "Event_0j00jns",
+            "elementType": "bpmn:IntermediateCatchEvent"
+          },
+          {
+            "flowNodeId": "Event_12m1moa",
+            "elementType": "bpmn:EndEvent"
+          }
+        ],
+        "coveredSequenceFlows": [
+          "Flow_15iab7k",
+          "Flow_1tydlj6",
+          "Flow_0xsu75b",
+          "Flow_0slvudx",
+          "Flow_17hl2st",
+          "Flow_1jcu0om",
+          "Flow_0e2atux",
+          "Flow_1mifehe"
+        ]
+      }
+    },
+    {
+      "name": "Producer – successful update",
+      "instructions": [
+        {
+          "type": "CREATE_PROCESS_INSTANCE",
+          "processDefinitionSelector": {
+            "processDefinitionId": "Proces"
+          },
+          "variables": {
+            "inventoryUpdateId": "INV-0001"
+          },
+          "runtimeInstructions": [
+            {
+              "type": "TERMINATE_PROCESS_INSTANCE",
+              "afterElementId": "Event_12m1moa"
+            }
+          ]
+        },
+        {
+          "type": "COMPLETE_USER_TASK",
+          "userTaskSelector": {
+            "elementId": "Activity_0ymhgse"
+          },
+          "variables": {
+            "productName": "",
+            "stockQuantity": null,
+            "availabilityStartDate": null,
+            "availabilityEndDate": null
+          }
+        },
+        {
+          "type": "COMPLETE_USER_TASK",
+          "userTaskSelector": {
+            "elementId": "Activity_0pt73m4"
+          },
+          "variables": {
+            "productName": "",
+            "stockQuantity": 50,
+            "availabilityStartDate": "2026-11-01",
+            "availabilityEndDate": "2027-02-28"
+          }
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_0qbaaqk",
+            "jobType": "submits inventory details"
+          }
+        },
+        {
+          "type": "ASSERT_ELEMENT_INSTANCE",
+          "processInstanceSelector": {
+            "processDefinitionId": "Proces"
+          },
+          "elementSelector": {
+            "elementId": "inventoryUpdateId"
+          },
+          "state": "IS_ACTIVE"
+        },
+        {
+          "type": "PUBLISH_MESSAGE",
+          "name": "CorrectionRequest",
+          "correlationKey": "INV-0001"
+        },
+        {
+          "type": "COMPLETE_USER_TASK",
+          "userTaskSelector": {
+            "elementId": "Activity_11pcdbm"
+          },
+          "variables": {
+            "textfield_1wwazv": "50",
+            "textfield_ikarop": "",
+            "textfield_xf0uzy": "50",
+            "textfield_p5u9u7": "1/11/2026",
+            "textfield_gurl9": "28/2/2027"
+          }
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_05f2te7",
+            "jobType": "resubmit-inventory-update"
+          }
+        },
+        {
+          "type": "ASSERT_ELEMENT_INSTANCE",
+          "processInstanceSelector": {
+            "processDefinitionId": "Proces"
+          },
+          "elementSelector": {
+            "elementId": "Event_0j00jns"
+          },
+          "state": "IS_ACTIVE"
+        },
+        {
+          "type": "PUBLISH_MESSAGE",
+          "name": "UpdateConfirmation",
+          "correlationKey": "INV-0001"
+        }
+      ],
+      "metadata": {
+        "processInstanceId": "6755399495111153",
+        "coveredFlowNodes": [
+          {
+            "flowNodeId": "Event_1geqrm1",
+            "elementType": "bpmn:StartEvent"
+          },
+          {
+            "flowNodeId": "Activity_0ymhgse",
+            "elementType": "bpmn:UserTask"
+          },
+          {
+            "flowNodeId": "Activity_0pt73m4",
+            "elementType": "bpmn:UserTask"
+          },
+          {
+            "flowNodeId": "Activity_0qbaaqk",
+            "elementType": "bpmn:SendTask"
+          },
+          {
+            "flowNodeId": "Gateway_1ylnwlm",
+            "elementType": "bpmn:EventBasedGateway"
+          },
+          {
+            "flowNodeId": "inventoryUpdateId",
+            "elementType": "bpmn:IntermediateCatchEvent"
+          },
+          {
+            "flowNodeId": "Activity_11pcdbm",
+            "elementType": "bpmn:UserTask"
+          },
+          {
+            "flowNodeId": "Activity_05f2te7",
+            "elementType": "bpmn:SendTask"
+          },
+          {
+            "flowNodeId": "Event_0j00jns",
+            "elementType": "bpmn:IntermediateCatchEvent"
+          },
+          {
+            "flowNodeId": "Event_12m1moa",
+            "elementType": "bpmn:EndEvent"
+          }
+        ],
+        "coveredSequenceFlows": [
+          "Flow_0xsu75b",
+          "Flow_15iab7k",
+          "Flow_1tydlj6",
+          "Flow_0slvudx",
+          "Flow_17hl2st",
+          "Flow_1jcu0om",
+          "Flow_0e2atux",
+          "Flow_1mifehe"
+        ]
+      }
+    },
+    {
+      "name": "Producer – successful update.",
+      "instructions": [
+        {
+          "type": "CREATE_PROCESS_INSTANCE",
+          "processDefinitionSelector": {
+            "processDefinitionId": "Proces"
+          },
+          "variables": {
+            "inventoryUpdateId": "INV-0001"
+          },
+          "runtimeInstructions": [
+            {
+              "type": "TERMINATE_PROCESS_INSTANCE",
+              "afterElementId": "Event_12m1moa"
+            }
+          ]
+        },
+        {
+          "type": "COMPLETE_USER_TASK",
+          "userTaskSelector": {
+            "elementId": "Activity_0ymhgse"
+          },
+          "variables": {
+            "productName": "",
+            "stockQuantity": null,
+            "availabilityStartDate": null,
+            "availabilityEndDate": null
+          }
+        },
+        {
+          "type": "COMPLETE_USER_TASK",
+          "userTaskSelector": {
+            "elementId": "Activity_0pt73m4"
+          },
+          "variables": {
+            "productName": "",
+            "stockQuantity": 50,
+            "availabilityStartDate": "2026-11-01",
+            "availabilityEndDate": "2027-02-28"
+          }
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_0qbaaqk",
+            "jobType": "submits inventory details"
+          }
+        },
+        {
+          "type": "ASSERT_ELEMENT_INSTANCE",
+          "processInstanceSelector": {
+            "processDefinitionId": "Proces"
+          },
+          "elementSelector": {
+            "elementId": "Event_0j00jns"
+          },
+          "state": "IS_ACTIVE"
+        },
+        {
+          "type": "PUBLISH_MESSAGE",
+          "name": "UpdateConfirmation",
+          "correlationKey": "INV-0001"
+        }
+      ],
+      "metadata": {
+        "processInstanceId": "2251799867800067",
+        "coveredFlowNodes": [
+          {
+            "flowNodeId": "Event_1geqrm1",
+            "elementType": "bpmn:StartEvent"
+          },
+          {
+            "flowNodeId": "Activity_0ymhgse",
+            "elementType": "bpmn:UserTask"
+          },
+          {
+            "flowNodeId": "Activity_0pt73m4",
+            "elementType": "bpmn:UserTask"
+          },
+          {
+            "flowNodeId": "Activity_0qbaaqk",
+            "elementType": "bpmn:SendTask"
+          },
+          {
+            "flowNodeId": "Gateway_1ylnwlm",
+            "elementType": "bpmn:EventBasedGateway"
+          },
+          {
+            "flowNodeId": "Event_0j00jns",
+            "elementType": "bpmn:IntermediateCatchEvent"
+          },
+          {
+            "flowNodeId": "Event_12m1moa",
+            "elementType": "bpmn:EndEvent"
+          }
+        ],
+        "coveredSequenceFlows": [
+          "Flow_15iab7k",
+          "Flow_1tydlj6",
+          "Flow_0xsu75b",
+          "Flow_0slvudx",
+          "Flow_1mifehe"
+        ]
+      }
+    }
+  ]
+}
