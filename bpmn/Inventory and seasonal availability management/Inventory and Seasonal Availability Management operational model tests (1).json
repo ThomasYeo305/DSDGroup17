@@ -1,0 +1,410 @@
+{
+  "processId": "Process_1fwdt0e",
+  "testCases": [
+    {
+      "name": "successful inventory update",
+      "instructions": [
+        {
+          "type": "PUBLISH_MESSAGE",
+          "name": "InventoryUpdateReceived",
+          "variables": {
+            "productName": "Organic Apples",
+            "stockQuantity": 20,
+            "availabilityStartDate": "2026-12-01",
+            "availabilityEndDate": "2026-12-30"
+          }
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_0zvxjv6",
+            "jobType": "validate-inventory"
+          },
+          "variables": {
+            "inventoryValid": true,
+            "validationError": ""
+          }
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_0wjp5m8",
+            "jobType": "check-availability"
+          },
+          "variables": {
+            "productAvailable": true
+          }
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_1ihzhoj",
+            "jobType": "update-inventory"
+          },
+          "variables": {
+            "catalogueUpdated": true
+          }
+        }
+      ],
+      "metadata": {
+        "processInstanceId": "2251799867727478",
+        "coveredFlowNodes": [
+          {
+            "flowNodeId": "StartEvent_1",
+            "elementType": "bpmn:StartEvent"
+          },
+          {
+            "flowNodeId": "Activity_0zvxjv6",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Gateway_1lsyot7",
+            "elementType": "bpmn:ExclusiveGateway"
+          },
+          {
+            "flowNodeId": "Activity_0wjp5m8",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Gateway_13sffa4",
+            "elementType": "bpmn:ExclusiveGateway"
+          },
+          {
+            "flowNodeId": "Activity_0m1jya5",
+            "elementType": "bpmn:Task"
+          },
+          {
+            "flowNodeId": "Activity_1ihzhoj",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Activity_0v4iy33",
+            "elementType": "bpmn:Task"
+          },
+          {
+            "flowNodeId": "Event_1h2q0ij",
+            "elementType": "bpmn:EndEvent"
+          }
+        ],
+        "coveredSequenceFlows": [
+          "Flow_0n8j008",
+          "Flow_1k7rjtq",
+          "Flow_1c21koa",
+          "Flow_0b8fp9f",
+          "Flow_11qmp4z",
+          "Flow_1karbj4",
+          "Flow_1qddfk9",
+          "Flow_013ao38"
+        ]
+      }
+    },
+    {
+      "name": "Product unavailablitity",
+      "description": "Product becomes unavailable because there is no available stock",
+      "instructions": [
+        {
+          "type": "PUBLISH_MESSAGE",
+          "name": "InventoryUpdateReceived",
+          "variables": {
+            "productName": "Organic Apples",
+            "stockQuantity": 20,
+            "availabilityStartDate": "2026-12-01",
+            "availabilityEndDate": "2026-12-30"
+          }
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_0zvxjv6",
+            "jobType": "validate-inventory"
+          },
+          "variables": {
+            "inventoryValid": true,
+            "validationError": ""
+          }
+        }
+      ],
+      "metadata": {
+        "processInstanceId": "2251799867728263",
+        "coveredFlowNodes": [
+          {
+            "flowNodeId": "StartEvent_1",
+            "elementType": "bpmn:StartEvent"
+          },
+          {
+            "flowNodeId": "Activity_0zvxjv6",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Gateway_1lsyot7",
+            "elementType": "bpmn:ExclusiveGateway"
+          },
+          {
+            "flowNodeId": "Activity_0wjp5m8",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Gateway_13sffa4",
+            "elementType": "bpmn:ExclusiveGateway"
+          },
+          {
+            "flowNodeId": "Activity_0gpqzqi",
+            "elementType": "bpmn:Task"
+          },
+          {
+            "flowNodeId": "Activity_1ihzhoj",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Activity_0v4iy33",
+            "elementType": "bpmn:Task"
+          },
+          {
+            "flowNodeId": "Event_1h2q0ij",
+            "elementType": "bpmn:EndEvent"
+          }
+        ],
+        "coveredSequenceFlows": [
+          "Flow_1karbj4",
+          "Flow_0b8fp9f",
+          "Flow_11qmp4z",
+          "Flow_0n8j008",
+          "Flow_126p9u9",
+          "Flow_15p4xs7",
+          "Flow_1qddfk9",
+          "Flow_013ao38"
+        ]
+      }
+    },
+    {
+      "name": "Invalid inventory information",
+      "instructions": [
+        {
+          "type": "PUBLISH_MESSAGE",
+          "name": "InventoryUpdateReceived",
+          "variables": {
+            "productName": "Organic Apples",
+            "stockQuantity": 20,
+            "availabilityStartDate": "2026-12-01",
+            "availabilityEndDate": "2026-12-30"
+          }
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_0zvxjv6",
+            "jobType": "validate-inventory"
+          },
+          "variables": {
+            "inventoryValid": true,
+            "validationError": ""
+          }
+        }
+      ],
+      "metadata": {
+        "processInstanceId": "2251799867731158",
+        "coveredFlowNodes": [
+          {
+            "flowNodeId": "StartEvent_1",
+            "elementType": "bpmn:StartEvent"
+          },
+          {
+            "flowNodeId": "Activity_0zvxjv6",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Gateway_1lsyot7",
+            "elementType": "bpmn:ExclusiveGateway"
+          },
+          {
+            "flowNodeId": "Activity_17qn5a5",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Event_11h9oh5",
+            "elementType": "bpmn:IntermediateCatchEvent"
+          },
+          {
+            "flowNodeId": "Activity_0wjp5m8",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Gateway_13sffa4",
+            "elementType": "bpmn:ExclusiveGateway"
+          },
+          {
+            "flowNodeId": "Activity_0m1jya5",
+            "elementType": "bpmn:Task"
+          },
+          {
+            "flowNodeId": "Activity_1ihzhoj",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Activity_0v4iy33",
+            "elementType": "bpmn:Task"
+          },
+          {
+            "flowNodeId": "Event_1h2q0ij",
+            "elementType": "bpmn:EndEvent"
+          }
+        ],
+        "coveredSequenceFlows": [
+          "Flow_0n8j008",
+          "Flow_1k7rjtq",
+          "Flow_1c21koa",
+          "Flow_0b8fp9f",
+          "Flow_11qmp4z",
+          "Flow_1qddfk9",
+          "Flow_013ao38",
+          "Flow_1karbj4",
+          "Flow_1f5rtia",
+          "Flow_1stw9wi",
+          "Flow_1uu07yb"
+        ]
+      }
+    },
+    {
+      "name": "Seasonal Availability - Product Available",
+      "instructions": [
+        {
+          "type": "CREATE_PROCESS_INSTANCE",
+          "processDefinitionSelector": {
+            "processDefinitionId": "Process_1fwdt0e"
+          },
+          "startInstructions": [
+            {
+              "elementId": "Activity_0ov89ji"
+            }
+          ],
+          "variables": {}
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_0ov89ji",
+            "jobType": "retrieve-seasonal-products"
+          },
+          "variables": {}
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_0cjmeiu",
+            "jobType": "check-seasonal-availability"
+          },
+          "variables": {
+            "productAvailable": true
+          }
+        }
+      ],
+      "metadata": {
+        "processInstanceId": "2251799867736857",
+        "coveredFlowNodes": [
+          {
+            "flowNodeId": "Activity_0ov89ji",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Activity_0cjmeiu",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Gateway_0klonts",
+            "elementType": "bpmn:ExclusiveGateway"
+          },
+          {
+            "flowNodeId": "Activity_0fnxauf",
+            "elementType": "bpmn:Task"
+          },
+          {
+            "flowNodeId": "Activity_1lw3q84",
+            "elementType": "bpmn:Task"
+          },
+          {
+            "flowNodeId": "Event_00llnxi",
+            "elementType": "bpmn:EndEvent"
+          }
+        ],
+        "coveredSequenceFlows": [
+          "Flow_04uc6uk",
+          "Flow_0vrlm62",
+          "Flow_0pl2tew",
+          "Flow_01cja8u",
+          "Flow_1bjvzyf"
+        ]
+      }
+    },
+    {
+      "name": "Seasonal Availability - Product Unavailable",
+      "instructions": [
+        {
+          "type": "CREATE_PROCESS_INSTANCE",
+          "processDefinitionSelector": {
+            "processDefinitionId": "Process_1fwdt0e"
+          },
+          "startInstructions": [
+            {
+              "elementId": "Activity_0ov89ji"
+            }
+          ],
+          "variables": {}
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_0ov89ji",
+            "jobType": "retrieve-seasonal-products"
+          },
+          "variables": {}
+        },
+        {
+          "type": "COMPLETE_JOB",
+          "jobSelector": {
+            "elementId": "Activity_0cjmeiu",
+            "jobType": "check-seasonal-availability"
+          },
+          "variables": {
+            "productAvailable": false
+          }
+        }
+      ],
+      "metadata": {
+        "processInstanceId": "4503599681387307",
+        "coveredFlowNodes": [
+          {
+            "flowNodeId": "Activity_0ov89ji",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Activity_0cjmeiu",
+            "elementType": "bpmn:ServiceTask"
+          },
+          {
+            "flowNodeId": "Gateway_0klonts",
+            "elementType": "bpmn:ExclusiveGateway"
+          },
+          {
+            "flowNodeId": "Activity_116qi6z",
+            "elementType": "bpmn:Task"
+          },
+          {
+            "flowNodeId": "Activity_1lw3q84",
+            "elementType": "bpmn:Task"
+          },
+          {
+            "flowNodeId": "Event_00llnxi",
+            "elementType": "bpmn:EndEvent"
+          }
+        ],
+        "coveredSequenceFlows": [
+          "Flow_04uc6uk",
+          "Flow_0vrlm62",
+          "Flow_0oi2uo4",
+          "Flow_02u9kcv",
+          "Flow_1bjvzyf"
+        ]
+      }
+    }
+  ]
+}
