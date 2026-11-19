@@ -1,0 +1,55 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.10.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "1921008"
+  },
+  "schemaVersion": 19,
+  "id": "update-stock-quantity-and-availability-period-13woiiv",
+  "components": [
+    {
+      "label": "Product",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1n2xhb0",
+        "columns": null
+      },
+      "id": "Field_08hqvv6",
+      "key": "productName"
+    },
+    {
+      "label": "Stock quantity",
+      "type": "number",
+      "layout": {
+        "row": "Row_02x2p6n",
+        "columns": null
+      },
+      "id": "Field_1vqq1tb",
+      "key": "stockQuantity"
+    },
+    {
+      "subtype": "date",
+      "dateLabel": "start date",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_05u8nu0",
+        "columns": null
+      },
+      "id": "Field_01xuc96",
+      "key": "availabilityStartDate"
+    },
+    {
+      "subtype": "date",
+      "dateLabel": "end date",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_08kgtoc",
+        "columns": null
+      },
+      "id": "Field_0kk398j",
+      "key": "availabilityEndDate"
+    }
+  ],
+  "type": "default"
+}
